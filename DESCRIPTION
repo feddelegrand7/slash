@@ -1,0 +1,26 @@
+Package: slash
+Type: Package
+Title: Path-Based Access and Manipulation of Nested Lists
+Version: 0.1.0
+Authors@R: 
+    person(given = "Mohamed El Fodil",
+           family = "Ihaddaden",
+           role = c("aut", "cre"),
+           email = "ihaddaden.fodeil@gmail.com")
+Description: Allows users to list data structures using path-based navigation. 
+    Provides intuitive methods for storing, accessing,
+    and manipulating nested data through simple path strings.
+    Key features include strict mode validation, path existence checking, recursive
+    operations, and automatic parent-level creation. Designed for use cases requiring
+    organized storage of complex nested data while maintaining simple access patterns.
+    Particularly useful for configuration management, nested settings, and any
+    application where data naturally forms a tree-like structure.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+RoxygenNote: 7.3.1
+Imports: 
+    R6
