@@ -2,17 +2,19 @@
 % Please edit documentation in R/main.R
 \name{slash}
 \alias{slash}
-\title{A hierarchical key-value store with path-based access}
+\title{Path-based access and manipulation for R lists}
 \description{
-A hierarchical key-value store with path-based access
+Path-based access and manipulation for R lists
 
-A hierarchical key-value store with path-based access
+Path-based access and manipulation for R lists
 }
 \details{
-The `slash` class provides a hierarchical data structure where elements can be
-accessed using path-like strings (e.g., "a/b/c"). It supports both named and
-numeric indexing (1-based), strict mode for error checking, and various
-operations for data manipulation.
+The slash class provides tools for working with hierarchical R lists using
+path-like strings (e.g., "a/b/c"). Rather than creating a new data structure,
+it adds convenient path-based access methods to standard R lists, supporting:
+- Both named and numeric (1-based) indexing
+- Strict mode for error checking
+- Various operations for list manipulation
 }
 \section{Methods}{
 \subsection{Public methods}{
