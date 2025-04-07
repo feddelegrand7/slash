@@ -80,7 +80,7 @@ garage <- list(
 )
 ```
 
-Let’s say we want to access the color of the **VW Golg**. While in
+Let’s say we want to access the color of the **VW Golf**. While in
 standard `R` one can do:
 
 ``` r

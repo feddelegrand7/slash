@@ -83,7 +83,7 @@ garage <- list(
 )
 ```
 
-Let's say we want to access the color of the __VW Golg__. While in standard `R` one can do: 
+Let's say we want to access the color of the __VW Golf__. While in standard `R` one can do: 
 
 ```{r}
 garage$vw$golf$color
