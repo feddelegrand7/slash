@@ -65,7 +65,7 @@ s$get(path = "cars/1/manufacturer")
 #> [1] "VW"
 ```
 
-`slash` can operated on unnamed elements like above and/or on named
+`slash` can operate on unnamed elements like above and/or on named
 elements like the following:
 
 ``` r

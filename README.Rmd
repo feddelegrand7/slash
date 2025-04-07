@@ -68,7 +68,7 @@ s <- slash$new(data = cars_list)
 
 s$get(path = "cars/1/manufacturer")
 ```
-`slash` can operated on unnamed elements like above and/or on named elements like the following: 
+`slash` can operate on unnamed elements like above and/or on named elements like the following: 
 
 
 ```{r}
