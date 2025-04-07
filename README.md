@@ -26,7 +26,7 @@ It supports:
 
 ## Installation
 
-You can install the development version of slash like so:
+You can install the development version of `slash` like so:
 
 ``` r
 devtools::install_github("feddelegrand7/slash")
