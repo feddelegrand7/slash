@@ -6,10 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/feddelegrand7/slash/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/feddelegrand7/slash/actions/workflows/R-CMD-check.yaml)
-
 [![R
 badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-blue)](https://github.com/feddelegrand7/rlowdb)
-
 [![Codecov test
 coverage](https://codecov.io/gh/feddelegrand7/slash/branch/main/graph/badge.svg)](https://app.codecov.io/gh/feddelegrand7/slash?branch=main)
 <!-- badges: end -->
