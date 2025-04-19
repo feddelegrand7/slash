@@ -231,7 +231,7 @@ sl$print_list()
 ```
 
 
-## Printing a `Tree` representation of the `slash object` 
+## Printing a `Tree` representation
 
 __only available in the development version (not yet on CRAN)__
 
@@ -243,7 +243,7 @@ sl$print_tree()
 
 ```{r}
 # Adding the 208 peugeot model
-# Make sure the quote the `208`, otherwise slash will 
+# Make sure to quote the `208`, otherwise slash will 
 # understand it as indices (Not name)
 
 sl$set("peugeot/`208`/year", 2013)

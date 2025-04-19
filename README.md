@@ -385,7 +385,7 @@ sl$print_list()
 #> list(vw = list(golf = list(year = 2005), passat = list(year = 2011)))
 ```
 
-## Printing a `Tree` representation of the `slash object`
+## Printing a `Tree` representation
 
 **only available in the development version (not yet on CRAN)**
 
@@ -404,7 +404,7 @@ sl$print_tree()
 
 ``` r
 # Adding the 208 peugeot model
-# Make sure the quote the `208`, otherwise slash will 
+# Make sure to quote the `208`, otherwise slash will 
 # understand it as indices (Not name)
 
 sl$set("peugeot/`208`/year", 2013)
