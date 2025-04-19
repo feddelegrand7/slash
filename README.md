@@ -10,6 +10,8 @@
 badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-blue)](https://github.com/feddelegrand7/rlowdb)
 [![Codecov test
 coverage](https://codecov.io/gh/feddelegrand7/slash/branch/main/graph/badge.svg)](https://app.codecov.io/gh/feddelegrand7/slash?branch=main)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/slash)](https://CRAN.R-project.org/package=slash)
 <!-- badges: end -->
 
 The goal of slash is to provide a hierarchical key-value store where
