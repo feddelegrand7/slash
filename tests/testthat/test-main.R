@@ -582,7 +582,7 @@ test_that("Basic array operations work", {
 
   expect_equal(length(sl$get_all()), 3)
 
-  expected_pathsl <- c(
+  expected_paths <- c(
     "1", "1/id", "1/name", "1/email", "1/roles", "1/roles/1", "1/roles/2",
     "1/active", "2", "2/id", "2/name", "2/email", "2/roles", "2/roles/1",
     "2/active", "3", "3/id", "3/name", "3/email", "3/roles", "3/active"
