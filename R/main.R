@@ -159,6 +159,14 @@ slash <- R6::R6Class(
     set_strict = function(strict) {
       private$.strict <- strict
       invisible(self)
+    },
+
+    #' @description Filter paths by regex pattern
+    #' @param pattern Regex pattern to match against paths
+    #' @return Character vector of matching paths
+    filter_paths = function(pattern) {
+      paths <- self$list_paths()
+      grep(pattern, paths, value = TRUE)
     }
   ),
 

@@ -1,7 +1,7 @@
 Package: slash
 Type: Package
 Title: Path-Based Access and Manipulation of Nested Lists
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: 
     person(given = "Mohamed El Fodil",
            family = "Ihaddaden",

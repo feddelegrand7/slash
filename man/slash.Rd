@@ -31,6 +31,7 @@ it adds convenient path-based access methods to standard R lists, supporting:
 \item \href{#method-slash-list_paths}{\code{slash$list_paths()}}
 \item \href{#method-slash-is_strict}{\code{slash$is_strict()}}
 \item \href{#method-slash-set_strict}{\code{slash$set_strict()}}
+\item \href{#method-slash-filter_paths}{\code{slash$filter_paths()}}
 \item \href{#method-slash-clone}{\code{slash$clone()}}
 }
 }
@@ -244,6 +245,26 @@ Set strict mode
 }
 \subsection{Returns}{
 The slash object (invisibly) for chaining
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-slash-filter_paths"></a>}}
+\if{latex}{\out{\hypertarget{method-slash-filter_paths}{}}}
+\subsection{Method \code{filter_paths()}}{
+Filter paths by regex pattern
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{slash$filter_paths(pattern)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{pattern}}{Regex pattern to match against paths}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+Character vector of matching paths
 }
 }
 \if{html}{\out{<hr>}}
