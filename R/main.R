@@ -171,16 +171,17 @@ slash <- R6::R6Class(
 
     #' @description Print a tree-like diagram of the list structure
     #' @param path Optional starting path (NULL for root)
+    #'
     print_tree = function(path = NULL) {
       if (!is.null(path) && !self$exists(path)) {
         stop(sprintf("Path '%s' not found", path))
       }
 
       start_data <- self$get(path)
-      start_label <- if (is.null(path)) "<root>" else path
+      start_label <- if (is.null(path)) "\033[1;36m<root>\033[0m" else paste0("\033[1;36m", path, "\033[0m")
 
       cat(start_label, "\n")
-      private$.print_tree_recursive(start_data, if (is.null(path)) "" else path)
+      private$.print_tree_recursive(start_data, prefix = "")
     }
 
   ),
@@ -348,31 +349,45 @@ slash <- R6::R6Class(
     },
 
     .print_tree_recursive = function(x, prefix = "") {
+
       if (!is.list(x)) {
-        cat(prefix, as.character(x), "\n", sep = "")
+        cat(prefix, "\033[1;33m", as.character(x), "\033[0m\n", sep = "")
         return()
       }
 
       keys <- names(x)
+      if (length(x) == 0) {
+        cat(prefix, "\033[1;31m<empty>\033[0m\n", sep = "")
+        return()
+      }
 
       for (i in seq_along(x)) {
+        is_last <- i == length(x)
         key <- if (!is.null(keys) && !is.na(keys[i]) && nzchar(keys[i])) keys[i] else as.character(i)
         val <- x[[i]]
 
-        if (is.list(val)) {
-          cat(prefix, "└── ", key, ":\n", sep = "")
-          private$.print_tree_recursive(val, paste0(prefix, "    "))
+        # Draw the tree structure
+        if (is_last) {
+          cat(prefix, "\033[1;34m└── \033[0m", sep = "")
+          new_prefix <- paste0(prefix, "    ")
         } else {
-          # Show NULL explicitly
-          val_str <- if (is.null(val)) "NULL" else as.character(val)
-          cat(prefix, "└── ", key, ": ", val_str, "\n", sep = "")
+          cat(prefix, "\033[1;34m├── \033[0m", sep = "")
+          new_prefix <- paste0(prefix, "\033[1;34m│   \033[0m")
+        }
+
+        # Colorize the key
+        colored_key <- paste0("\033[1;32m", key, "\033[0m")
+
+        if (is.list(val)) {
+          # For lists, show the key and recurse
+          cat(colored_key, "\033[1;35m:\033[0m\n", sep = "")
+          private$.print_tree_recursive(val, new_prefix)
+        } else {
+          # For values, show key: value
+          val_str <- if (is.null(val)) "\033[1;31mNULL\033[0m" else paste0("\033[1;33m", as.character(val), "\033[0m")
+          cat(colored_key, "\033[1;35m:\033[0m ", val_str, "\n", sep = "")
         }
       }
     }
-
-
-
-
-
   )
 )
