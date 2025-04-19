@@ -180,7 +180,7 @@ slash <- R6::R6Class(
       start_label <- if (is.null(path)) "<root>" else path
 
       cat(start_label, "\n")
-      private$.print_tree_recursive(start_data, if (is.null(path)) "" else path, "")
+      private$.print_tree_recursive(start_data, if (is.null(path)) "" else path)
     }
 
   ),
@@ -329,55 +329,50 @@ slash <- R6::R6Class(
         return(character(0))
       }
 
-      if (is.null(names(data))) {
-        for (i in seq_along(data)) {
-          new_path <- if (nzchar(current_path)) paste0(current_path, "/", i) else as.character(i)
+      keys <- names(data)
+      for (i in seq_along(data)) {
+        # Determine the key: use name if available, else numeric index
+        key <- if (!is.null(keys) && !is.na(keys[i]) && nzchar(keys[i])) keys[i] else as.character(i)
 
-          if (is.list(data[[i]])) {
-            paths <- c(paths, new_path)
-            paths <- c(paths, private$.find_paths(data[[i]], new_path))
-          } else {
-            paths <- c(paths, new_path)
-          }
-        }
-      } else {
-        for (name in names(data)) {
-          new_path <- if (nzchar(current_path)) paste0(current_path, "/", name) else name
+        new_path <- if (nzchar(current_path)) paste0(current_path, "/", key) else key
 
-          if (is.list(data[[name]])) {
-            paths <- c(paths, new_path)
-            paths <- c(paths, private$.find_paths(data[[name]], new_path))
-          } else {
-            paths <- c(paths, new_path)
-          }
+        if (is.list(data[[i]])) {
+          paths <- c(paths, new_path)
+          paths <- c(paths, private$.find_paths(data[[i]], new_path))
+        } else {
+          paths <- c(paths, new_path)
         }
       }
 
       unique(paths)
     },
 
-    .print_tree_recursive = function(data, current_path, indent) {
-      if (!is.list(data) || length(data) == 0) return()
+    .print_tree_recursive = function(x, prefix = "") {
+      if (!is.list(x)) {
+        cat(prefix, as.character(x), "\n", sep = "")
+        return()
+      }
 
-      keys <- if (is.null(names(data))) seq_along(data) else names(data)
+      keys <- names(x)
 
-      for (i in seq_along(keys)) {
-        key <- keys[[i]]
-        child_path <- if (nzchar(current_path)) paste0(current_path, "/", key) else as.character(key)
-        is_last <- i == length(keys)
-        branch <- if (is_last) "└── " else "├── "
+      for (i in seq_along(x)) {
+        key <- if (!is.null(keys) && !is.na(keys[i]) && nzchar(keys[i])) keys[i] else as.character(i)
+        val <- x[[i]]
 
-        val <- self$get(child_path)
-
-        if (is.list(val) && length(val) > 0) {
-          cat(indent, branch, key, "\n", sep = "")
-          new_indent <- paste0(indent, if (is_last) "    " else "│   ")
-          private$.print_tree_recursive(val, child_path, new_indent)
+        if (is.list(val)) {
+          cat(prefix, "└── ", key, ":\n", sep = "")
+          private$.print_tree_recursive(val, paste0(prefix, "    "))
         } else {
-          cat(indent, branch, key, ": ", toString(val), "\n", sep = "")
+          # Show NULL explicitly
+          val_str <- if (is.null(val)) "NULL" else as.character(val)
+          cat(prefix, "└── ", key, ": ", val_str, "\n", sep = "")
         }
       }
     }
+
+
+
+
 
   )
 )
