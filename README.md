@@ -67,9 +67,9 @@ syntax:
 ``` r
 library(slash)
 
-s <- slash$new(data = cars_list)
+sl <- slash$new(data = cars_list)
 
-s$get(path = "cars/1/manufacturer")
+sl$get(path = "cars/1/manufacturer")
 #> [1] "VW"
 ```
 
@@ -99,8 +99,8 @@ garage$vw$golf$color
 Using `slash`, we can operate as the following:
 
 ``` r
-s <- slash$new(data = garage)
-s$get("vw/golf/color")
+sl <- slash$new(data = garage)
+sl$get("vw/golf/color")
 #> [1] "black"
 ```
 
@@ -108,8 +108,8 @@ If now, for example, we would want to access all the properties of the
 `Golf` car, we would do:
 
 ``` r
-s <- slash$new(data = garage)
-s$get("vw/golf")
+sl <- slash$new(data = garage)
+sl$get("vw/golf")
 #> $year
 #> [1] 2005
 #> 
@@ -121,7 +121,7 @@ It is possible to return the whole list if needed using the `get_all`
 method:
 
 ``` r
-s$get_all()
+sl$get_all()
 #> $vw
 #> $vw$golf
 #> $vw$golf$year
@@ -147,7 +147,7 @@ You’ll also get the whole `list` element when `NULL` (the default) is
 provided to the `get` method:
 
 ``` r
-s$get(NULL)
+sl$get(NULL)
 #> $vw
 #> $vw$golf
 #> $vw$golf$year
@@ -173,7 +173,7 @@ If you try to access an element that does not exist, you’ll get a `NULL`
 as the returned value:
 
 ``` r
-s$get("vw/polo")
+sl$get("vw/polo")
 #> NULL
 ```
 
@@ -182,20 +182,20 @@ not found using the `strict` parameter. You can set the parameter at the
 initialization of the instance:
 
 ``` r
-s <- slash$new(data = garage, strict = TRUE)
+sl <- slash$new(data = garage, strict = TRUE)
 ```
 
 or afterward, using the `set_strict` method:
 
 ``` r
-s$set_strict(strict = TRUE)
+sl$set_strict(strict = TRUE)
 ```
 
 This way, we get an `error` back when an element is not found:
 
 ``` r
-s$get("vw/polo")
-#> Error in s$get("vw/polo"): Element at path 'vw/polo' does not exist
+sl$get("vw/polo")
+#> Error in sl$get("vw/polo"): Element at path 'vw/polo' does not exist
 ```
 
 ## Setting elements in a `list`
@@ -205,10 +205,10 @@ list using the `set` method, suppose I want to add a new car to my
 previous list:
 
 ``` r
-s$set(path = "vw/polo/year", value = 2013)
-s$set(path = "vw/polo/color", value = "Steelblue")
+sl$set(path = "vw/polo/year", value = 2013)
+sl$set(path = "vw/polo/color", value = "Steelblue")
 
-s$get("vw")
+sl$get("vw")
 #> $golf
 #> $golf$year
 #> [1] 2005
@@ -234,8 +234,8 @@ Now, if you want to modify the year from `2013` to `2023` for example,
 you can do:
 
 ``` r
-s$set(path = "vw/polo/year", value = 2023)
-s$get("vw")
+sl$set(path = "vw/polo/year", value = 2023)
+sl$get("vw")
 #> $golf
 #> $golf$year
 #> [1] 2005
@@ -260,19 +260,19 @@ s$get("vw")
 You can even build your list element from scrath:
 
 ``` r
-s <- slash$new()
-s$get()
+sl <- slash$new()
+sl$get()
 #> list()
 ```
 
 ``` r
-s$set("vw/golf/year", value = 2005)
-s$set("vw/golf/color", value = "black")
-s$set("vw/passat/year", value = 2011)
-s$set("vw/polo/year", value = "Steelblue")
-s$set("vw/polo/color", value = 2023)
+sl$set("vw/golf/year", value = 2005)
+sl$set("vw/golf/color", value = "black")
+sl$set("vw/passat/year", value = 2011)
+sl$set("vw/polo/year", value = "Steelblue")
+sl$set("vw/polo/color", value = 2023)
 
-s$get("vw")
+sl$get("vw")
 #> $golf
 #> $golf$year
 #> [1] 2005
@@ -300,8 +300,8 @@ You can delete an element using the `delete` method, suppose we don’t
 need the `polo` car element anymore, we could do:
 
 ``` r
-s$delete("vw/polo")
-s$get("vw")
+sl$delete("vw/polo")
+sl$get("vw")
 #> $golf
 #> $golf$year
 #> [1] 2005
@@ -319,8 +319,8 @@ You can delete at any level on the list, for example if we want to
 delete the `color` field of the `golf` element, we could do:
 
 ``` r
-s$delete("vw/golf/color")
-s$get("vw")
+sl$delete("vw/golf/color")
+sl$get("vw")
 #> $golf
 #> $golf$year
 #> [1] 2005
@@ -337,9 +337,52 @@ If you want to list the available paths of your `list` object, you can
 call the `list_paths()` method:
 
 ``` r
-s$list_paths()
+sl$list_paths()
 #> [1] "vw"             "vw/golf"        "vw/golf/year"   "vw/passat"     
 #> [5] "vw/passat/year"
+```
+
+## Check if an element exists:
+
+Use the `exists` method to check if a particular path exists:
+
+``` r
+sl$exists("vw")
+#> [1] TRUE
+sl$exists("vw/golf")
+#> [1] TRUE
+sl$exists("vw/golf/color")
+#> [1] FALSE
+sl$exists("porshe/911")
+#> [1] FALSE
+```
+
+## Printing a `slash` object
+
+A `slash` object has a particular `print` method attached to it, it
+prints a nice view of the available paths among other information
+(`strict mode`):
+
+``` r
+sl$print()
+#> slash object (non-strict mode)
+#> Use $get() or $get_all() to view contents
+#> Available Paths:
+#> - vw
+#> - vw/golf
+#> - vw/golf/year
+#> - vw/passat
+#> - vw/passat/year
+```
+
+## Printing the `list` object
+
+Each `slash` object is build on top of a `list` object, if you want to
+print the `list` it-self, use the `print_list` method:
+
+``` r
+sl$print_list()
+#> list(vw = list(golf = list(year = 2005), passat = list(year = 2011)))
 ```
 
 ## Code of Conduct
