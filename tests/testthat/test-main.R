@@ -84,7 +84,7 @@ testthat::test_that("slash class comprehensive tests", {
   sl$set("d/e/f", 3)
   testthat::expect_equal(sl$get_all(), test_data)
 
-  testthat::expect_output(print(s), "slash object")
+  testthat::expect_output(print(sl), "slash object")
 
   testthat::expect_output(sl$print_list("a"), "list\\(b = 1, c = 2\\)")
 
