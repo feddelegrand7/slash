@@ -28,6 +28,12 @@ It supports:
 
 ## Installation
 
+You can install `slash` from `CRAN` with:
+
+``` r
+install.packages("slash")
+```
+
 You can install the development version of `slash` like so:
 
 ``` r
