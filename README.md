@@ -364,7 +364,7 @@ prints a nice view of the available paths among other information
 (`strict mode`):
 
 ``` r
-sl$print()
+sl
 #> slash object (non-strict mode)
 #> Use $get() or $get_all() to view contents
 #> Available Paths:
