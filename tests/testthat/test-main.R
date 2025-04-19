@@ -197,9 +197,9 @@ testthat::test_that("slash class comprehensive tests", {
 
   sl$clear()
   sl$set("a/b", 1)
-  testthat::expect_output(print(s, show_full = TRUE), "Full dictionary structure")
+  testthat::expect_output(print(sl, show_full = TRUE), "Full dictionary structure")
 
-  testthat::expect_output(print(s), "Use \\$get\\(\\) or \\$get_all\\(\\)")
+  testthat::expect_output(print(sl), "Use \\$get\\(\\) or \\$get_all\\(\\)")
 
   sl$clear()
   testthat::expect_length(sl$list_paths(), 0)
