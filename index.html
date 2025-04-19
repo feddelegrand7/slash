@@ -348,6 +348,48 @@
 <span><span class="co">#&gt; list(vw = list(golf = list(year = 2005), passat = list(year = 2011)))</span></span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="printing-a-tree-representation-of-the-slash-object">Printing a <code>Tree</code> representation of the <code>slash object</code>
+<a class="anchor" aria-label="anchor" href="#printing-a-tree-representation-of-the-slash-object"></a>
+</h2>
+<p><strong>only available in the development version (not yet on CRAN)</strong></p>
+<p>You can print a <code>Tree</code> representation of your <code>slash</code> object and its underlying list using the <code>print_tree</code> method:</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sl</span><span class="op">$</span><span class="fu">print_tree</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;root&gt; </span></span>
+<span><span class="co">#&gt; └── vw</span></span>
+<span><span class="co">#&gt;     ├── golf</span></span>
+<span><span class="co">#&gt;     │   └── year: 2005</span></span>
+<span><span class="co">#&gt;     └── passat</span></span>
+<span><span class="co">#&gt;         └── year: 2011</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Adding the 208 peugeot model</span></span>
+<span><span class="co"># Make sure the quote the `208`, otherwise slash will </span></span>
+<span><span class="co"># understand it as indices (Not name)</span></span>
+<span></span>
+<span><span class="va">sl</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="st">"peugeot/`208`/year"</span>, <span class="fl">2013</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">sl</span><span class="op">$</span><span class="fu">print_tree</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;root&gt; </span></span>
+<span><span class="co">#&gt; ├── vw</span></span>
+<span><span class="co">#&gt; │   ├── golf</span></span>
+<span><span class="co">#&gt; │   │   └── year: 2005</span></span>
+<span><span class="co">#&gt; │   └── passat</span></span>
+<span><span class="co">#&gt; │       └── year: 2011</span></span>
+<span><span class="co">#&gt; └── peugeot</span></span>
+<span><span class="co">#&gt;     └── `208`</span></span>
+<span><span class="co">#&gt;         └── year: 2013</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sl</span><span class="op">$</span><span class="fu">print_tree</span><span class="op">(</span><span class="st">"peugeot"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; peugeot </span></span>
+<span><span class="co">#&gt; └── `208`</span></span>
+<span><span class="co">#&gt;     └── year: 2013</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sl</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="st">"peugeot/`208`/energy/class"</span>, <span class="st">"Diesel"</span><span class="op">)</span></span>
+<span><span class="va">sl</span><span class="op">$</span><span class="fu">print_tree</span><span class="op">(</span><span class="st">"peugeot/`208`/energy"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; peugeot/`208`/energy </span></span>
+<span><span class="co">#&gt; └── class: Diesel</span></span></code></pre></div>
+</div>
+<div class="section level2">
 <h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
 </h2>
 <p>Please note that the slash project is released with a <a href="https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
