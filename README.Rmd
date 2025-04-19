@@ -231,6 +231,36 @@ sl$print_list()
 ```
 
 
+## Printing a `Tree` representation of the `slash object` 
+
+__only available in the development version (not yet on CRAN)__
+
+You can print a `Tree` representation of your `slash` object and its underlying list using the `print_tree` method:
+
+```{r}
+sl$print_tree()
+```
+
+```{r}
+# Adding the 208 peugeot model
+# Make sure the quote the `208`, otherwise slash will 
+# understand it as indices (Not name)
+
+sl$set("peugeot/`208`/year", 2013)
+
+sl$print_tree()
+```
+
+
+```{r}
+sl$print_tree("peugeot")
+```
+
+```{r}
+sl$set("peugeot/`208`/energy/class", "Diesel")
+sl$print_tree("peugeot/`208`/energy")
+```
+
 ## Code of Conduct
 
 Please note that the slash project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.

@@ -167,7 +167,22 @@ slash <- R6::R6Class(
     filter_paths = function(pattern) {
       paths <- self$list_paths()
       grep(pattern, paths, value = TRUE)
+    },
+
+    #' @description Print a tree-like diagram of the list structure
+    #' @param path Optional starting path (NULL for root)
+    print_tree = function(path = NULL) {
+      if (!is.null(path) && !self$exists(path)) {
+        stop(sprintf("Path '%s' not found", path))
+      }
+
+      start_data <- self$get(path)
+      start_label <- if (is.null(path)) "<root>" else path
+
+      cat(start_label, "\n")
+      private$.print_tree_recursive(start_data, if (is.null(path)) "" else path, "")
     }
+
   ),
 
   private = list(
@@ -339,6 +354,30 @@ slash <- R6::R6Class(
       }
 
       unique(paths)
+    },
+
+    .print_tree_recursive = function(data, current_path, indent) {
+      if (!is.list(data) || length(data) == 0) return()
+
+      keys <- if (is.null(names(data))) seq_along(data) else names(data)
+
+      for (i in seq_along(keys)) {
+        key <- keys[[i]]
+        child_path <- if (nzchar(current_path)) paste0(current_path, "/", key) else as.character(key)
+        is_last <- i == length(keys)
+        branch <- if (is_last) "└── " else "├── "
+
+        val <- self$get(child_path)
+
+        if (is.list(val) && length(val) > 0) {
+          cat(indent, branch, key, "\n", sep = "")
+          new_indent <- paste0(indent, if (is_last) "    " else "│   ")
+          private$.print_tree_recursive(val, child_path, new_indent)
+        } else {
+          cat(indent, branch, key, ": ", toString(val), "\n", sep = "")
+        }
+      }
     }
+
   )
 )

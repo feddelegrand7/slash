@@ -3,6 +3,7 @@
 * New methods: 
 
 - `filter_paths`
+- `print_tree`
 
 
 

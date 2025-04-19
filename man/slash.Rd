@@ -32,6 +32,7 @@ it adds convenient path-based access methods to standard R lists, supporting:
 \item \href{#method-slash-is_strict}{\code{slash$is_strict()}}
 \item \href{#method-slash-set_strict}{\code{slash$set_strict()}}
 \item \href{#method-slash-filter_paths}{\code{slash$filter_paths()}}
+\item \href{#method-slash-print_tree}{\code{slash$print_tree()}}
 \item \href{#method-slash-clone}{\code{slash$clone()}}
 }
 }
@@ -265,6 +266,23 @@ Filter paths by regex pattern
 }
 \subsection{Returns}{
 Character vector of matching paths
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-slash-print_tree"></a>}}
+\if{latex}{\out{\hypertarget{method-slash-print_tree}{}}}
+\subsection{Method \code{print_tree()}}{
+Print a tree-like diagram of the list structure
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{slash$print_tree(path = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{path}}{Optional starting path (NULL for root)}
+}
+\if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}
