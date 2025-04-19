@@ -92,9 +92,9 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/feddelegrand7/slash" class="external-link">slash</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">s</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/slash.html">slash</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>data <span class="op">=</span> <span class="va">cars_list</span><span class="op">)</span></span>
+<span><span class="va">sl</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/slash.html">slash</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>data <span class="op">=</span> <span class="va">cars_list</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">s</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span>path <span class="op">=</span> <span class="st">"cars/1/manufacturer"</span><span class="op">)</span></span>
+<span><span class="va">sl</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span>path <span class="op">=</span> <span class="st">"cars/1/manufacturer"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "VW"</span></span></code></pre></div>
 <p><code>slash</code> can operate on unnamed elements like above and/or on named elements like the following:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -113,13 +113,13 @@
 <span><span class="co">#&gt; [1] "black"</span></span></code></pre></div>
 <p>Using <code>slash</code>, we can operate as the following:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/slash.html">slash</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>data <span class="op">=</span> <span class="va">garage</span><span class="op">)</span></span>
-<span><span class="va">s</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"vw/golf/color"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">sl</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/slash.html">slash</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>data <span class="op">=</span> <span class="va">garage</span><span class="op">)</span></span>
+<span><span class="va">sl</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"vw/golf/color"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "black"</span></span></code></pre></div>
 <p>If now, for example, we would want to access all the properties of the <code>Golf</code> car, we would do:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/slash.html">slash</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>data <span class="op">=</span> <span class="va">garage</span><span class="op">)</span></span>
-<span><span class="va">s</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"vw/golf"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">sl</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/slash.html">slash</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>data <span class="op">=</span> <span class="va">garage</span><span class="op">)</span></span>
+<span><span class="va">sl</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"vw/golf"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $year</span></span>
 <span><span class="co">#&gt; [1] 2005</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -127,7 +127,7 @@
 <span><span class="co">#&gt; [1] "black"</span></span></code></pre></div>
 <p>It is possible to return the whole list if needed using the <code>get_all</code> method:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">s</span><span class="op">$</span><span class="fu">get_all</span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">sl</span><span class="op">$</span><span class="fu">get_all</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $vw</span></span>
 <span><span class="co">#&gt; $vw$golf</span></span>
 <span><span class="co">#&gt; $vw$golf$year</span></span>
@@ -149,7 +149,7 @@
 <span><span class="co">#&gt; [1] 2010</span></span></code></pre></div>
 <p>You’ll also get the whole <code>list</code> element when <code>NULL</code> (the default) is provided to the <code>get</code> method:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">s</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">sl</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $vw</span></span>
 <span><span class="co">#&gt; $vw$golf</span></span>
 <span><span class="co">#&gt; $vw$golf$year</span></span>
@@ -171,18 +171,18 @@
 <span><span class="co">#&gt; [1] 2010</span></span></code></pre></div>
 <p>If you try to access an element that does not exist, you’ll get a <code>NULL</code> as the returned value:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">s</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"vw/polo"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">sl</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"vw/polo"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; NULL</span></span></code></pre></div>
 <p>You can change this behavior and get an <code>error</code> back when an element is not found using the <code>strict</code> parameter. You can set the parameter at the initialization of the instance:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/slash.html">slash</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>data <span class="op">=</span> <span class="va">garage</span>, strict <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">sl</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/slash.html">slash</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>data <span class="op">=</span> <span class="va">garage</span>, strict <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>or afterward, using the <code>set_strict</code> method:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">s</span><span class="op">$</span><span class="fu">set_strict</span><span class="op">(</span>strict <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">sl</span><span class="op">$</span><span class="fu">set_strict</span><span class="op">(</span>strict <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>This way, we get an <code>error</code> back when an element is not found:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">s</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"vw/polo"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in s$get("vw/polo"): Element at path 'vw/polo' does not exist</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">sl</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"vw/polo"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in sl$get("vw/polo"): Element at path 'vw/polo' does not exist</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="setting-elements-in-a-list">Setting elements in a <code>list</code>
@@ -190,10 +190,10 @@
 </h2>
 <p>You can change the value of an element or add a new element within a list using the <code>set</code> method, suppose I want to add a new car to my previous list:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">s</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>path <span class="op">=</span> <span class="st">"vw/polo/year"</span>, value <span class="op">=</span> <span class="fl">2013</span><span class="op">)</span></span>
-<span><span class="va">s</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>path <span class="op">=</span> <span class="st">"vw/polo/color"</span>, value <span class="op">=</span> <span class="st">"Steelblue"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">sl</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>path <span class="op">=</span> <span class="st">"vw/polo/year"</span>, value <span class="op">=</span> <span class="fl">2013</span><span class="op">)</span></span>
+<span><span class="va">sl</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>path <span class="op">=</span> <span class="st">"vw/polo/color"</span>, value <span class="op">=</span> <span class="st">"Steelblue"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">s</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"vw"</span><span class="op">)</span></span>
+<span><span class="va">sl</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"vw"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $golf</span></span>
 <span><span class="co">#&gt; $golf$year</span></span>
 <span><span class="co">#&gt; [1] 2005</span></span>
@@ -215,8 +215,8 @@
 <span><span class="co">#&gt; [1] "Steelblue"</span></span></code></pre></div>
 <p>Now, if you want to modify the year from <code>2013</code> to <code>2023</code> for example, you can do:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">s</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>path <span class="op">=</span> <span class="st">"vw/polo/year"</span>, value <span class="op">=</span> <span class="fl">2023</span><span class="op">)</span></span>
-<span><span class="va">s</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"vw"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">sl</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>path <span class="op">=</span> <span class="st">"vw/polo/year"</span>, value <span class="op">=</span> <span class="fl">2023</span><span class="op">)</span></span>
+<span><span class="va">sl</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"vw"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $golf</span></span>
 <span><span class="co">#&gt; $golf$year</span></span>
 <span><span class="co">#&gt; [1] 2005</span></span>
@@ -238,17 +238,17 @@
 <span><span class="co">#&gt; [1] "Steelblue"</span></span></code></pre></div>
 <p>You can even build your list element from scrath:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/slash.html">slash</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">s</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">sl</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/slash.html">slash</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">sl</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; list()</span></span></code></pre></div>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">s</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="st">"vw/golf/year"</span>, value <span class="op">=</span> <span class="fl">2005</span><span class="op">)</span></span>
-<span><span class="va">s</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="st">"vw/golf/color"</span>, value <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span>
-<span><span class="va">s</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="st">"vw/passat/year"</span>, value <span class="op">=</span> <span class="fl">2011</span><span class="op">)</span></span>
-<span><span class="va">s</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="st">"vw/polo/year"</span>, value <span class="op">=</span> <span class="st">"Steelblue"</span><span class="op">)</span></span>
-<span><span class="va">s</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="st">"vw/polo/color"</span>, value <span class="op">=</span> <span class="fl">2023</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">sl</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="st">"vw/golf/year"</span>, value <span class="op">=</span> <span class="fl">2005</span><span class="op">)</span></span>
+<span><span class="va">sl</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="st">"vw/golf/color"</span>, value <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span>
+<span><span class="va">sl</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="st">"vw/passat/year"</span>, value <span class="op">=</span> <span class="fl">2011</span><span class="op">)</span></span>
+<span><span class="va">sl</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="st">"vw/polo/year"</span>, value <span class="op">=</span> <span class="st">"Steelblue"</span><span class="op">)</span></span>
+<span><span class="va">sl</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="st">"vw/polo/color"</span>, value <span class="op">=</span> <span class="fl">2023</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">s</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"vw"</span><span class="op">)</span></span>
+<span><span class="va">sl</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"vw"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $golf</span></span>
 <span><span class="co">#&gt; $golf$year</span></span>
 <span><span class="co">#&gt; [1] 2005</span></span>
@@ -275,8 +275,8 @@
 </h2>
 <p>You can delete an element using the <code>delete</code> method, suppose we don’t need the <code>polo</code> car element anymore, we could do:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">s</span><span class="op">$</span><span class="fu">delete</span><span class="op">(</span><span class="st">"vw/polo"</span><span class="op">)</span></span>
-<span><span class="va">s</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"vw"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">sl</span><span class="op">$</span><span class="fu">delete</span><span class="op">(</span><span class="st">"vw/polo"</span><span class="op">)</span></span>
+<span><span class="va">sl</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"vw"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $golf</span></span>
 <span><span class="co">#&gt; $golf$year</span></span>
 <span><span class="co">#&gt; [1] 2005</span></span>
@@ -290,8 +290,8 @@
 <span><span class="co">#&gt; [1] 2011</span></span></code></pre></div>
 <p>You can delete at any level on the list, for example if we want to delete the <code>color</code> field of the <code>golf</code> element, we could do:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">s</span><span class="op">$</span><span class="fu">delete</span><span class="op">(</span><span class="st">"vw/golf/color"</span><span class="op">)</span></span>
-<span><span class="va">s</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"vw"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">sl</span><span class="op">$</span><span class="fu">delete</span><span class="op">(</span><span class="st">"vw/golf/color"</span><span class="op">)</span></span>
+<span><span class="va">sl</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"vw"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $golf</span></span>
 <span><span class="co">#&gt; $golf$year</span></span>
 <span><span class="co">#&gt; [1] 2005</span></span>
@@ -306,9 +306,46 @@
 </h2>
 <p>If you want to list the available paths of your <code>list</code> object, you can call the <code>list_paths()</code> method:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">s</span><span class="op">$</span><span class="fu">list_paths</span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">sl</span><span class="op">$</span><span class="fu">list_paths</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "vw"             "vw/golf"        "vw/golf/year"   "vw/passat"     </span></span>
 <span><span class="co">#&gt; [5] "vw/passat/year"</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="check-if-an-element-exists">Check if an element exists:<a class="anchor" aria-label="anchor" href="#check-if-an-element-exists"></a>
+</h2>
+<p>Use the <code>exists</code> method to check if a particular path exists:</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sl</span><span class="op">$</span><span class="fu">exists</span><span class="op">(</span><span class="st">"vw"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span><span class="va">sl</span><span class="op">$</span><span class="fu">exists</span><span class="op">(</span><span class="st">"vw/golf"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span><span class="va">sl</span><span class="op">$</span><span class="fu">exists</span><span class="op">(</span><span class="st">"vw/golf/color"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] FALSE</span></span>
+<span><span class="va">sl</span><span class="op">$</span><span class="fu">exists</span><span class="op">(</span><span class="st">"porshe/911"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="printing-a-slash-object">Printing a <code>slash</code> object<a class="anchor" aria-label="anchor" href="#printing-a-slash-object"></a>
+</h2>
+<p>A <code>slash</code> object has a particular <code>print</code> method attached to it, it prints a nice view of the available paths among other information (<code>strict mode</code>):</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sl</span><span class="op">$</span><span class="fu">print</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; slash object (non-strict mode)</span></span>
+<span><span class="co">#&gt; Use $get() or $get_all() to view contents</span></span>
+<span><span class="co">#&gt; Available Paths:</span></span>
+<span><span class="co">#&gt; - vw</span></span>
+<span><span class="co">#&gt; - vw/golf</span></span>
+<span><span class="co">#&gt; - vw/golf/year</span></span>
+<span><span class="co">#&gt; - vw/passat</span></span>
+<span><span class="co">#&gt; - vw/passat/year</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="printing-the-list-object">Printing the <code>list</code> object<a class="anchor" aria-label="anchor" href="#printing-the-list-object"></a>
+</h2>
+<p>Each <code>slash</code> object is build on top of a <code>list</code> object, if you want to print the <code>list</code> it-self, use the <code>print_list</code> method:</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sl</span><span class="op">$</span><span class="fu">print_list</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; list(vw = list(golf = list(year = 2005), passat = list(year = 2011)))</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
