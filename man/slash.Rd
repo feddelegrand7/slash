@@ -254,13 +254,16 @@ The slash object (invisibly) for chaining
 \subsection{Method \code{filter_paths()}}{
 Filter paths by regex pattern
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{slash$filter_paths(pattern)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{slash$filter_paths(pattern, ignore_case = FALSE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{pattern}}{Regex pattern to match against paths}
+
+\item{\code{ignore_case}}{TRUE to ignore cases, FALSE otherwise.
+Defaults to FALSE.}
 }
 \if{html}{\out{</div>}}
 }

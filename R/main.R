@@ -351,7 +351,6 @@ slash <- R6::R6Class(
     },
 
     .print_tree_recursive = function(x, prefix = "") {
-
       if (!is.list(x)) {
         cat(prefix, "\033[1;33m", as.character(x), "\033[0m\n", sep = "")
         return()
@@ -368,13 +367,13 @@ slash <- R6::R6Class(
         key <- if (!is.null(keys) && !is.na(keys[i]) && nzchar(keys[i])) keys[i] else as.character(i)
         val <- x[[i]]
 
-        # Draw the tree structure
+        # Draw the tree structure with ASCII characters
         if (is_last) {
-          cat(prefix, "\033[1;34m└── \033[0m", sep = "")
+          cat(prefix, "\033[1;34m`-- \033[0m", sep = "")
           new_prefix <- paste0(prefix, "    ")
         } else {
-          cat(prefix, "\033[1;34m├── \033[0m", sep = "")
-          new_prefix <- paste0(prefix, "\033[1;34m│   \033[0m")
+          cat(prefix, "\033[1;34m|-- \033[0m", sep = "")
+          new_prefix <- paste0(prefix, "\033[1;34m|   \033[0m")
         }
 
         # Colorize the key
