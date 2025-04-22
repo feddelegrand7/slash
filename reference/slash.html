@@ -287,13 +287,18 @@ it adds convenient path-based access methods to standard R lists, supporting:
 <h3 id="method-filter-paths-">Method <code>filter_paths()</code><a class="anchor" aria-label="anchor" href="#method-filter-paths-"></a></h3>
 <p>Filter paths by regex pattern</p><div class="section">
 <h4 id="usage-12">Usage<a class="anchor" aria-label="anchor" href="#usage-12"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">slash</span><span class="op">$</span><span class="fu">filter_paths</span><span class="op">(</span><span class="va">pattern</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">slash</span><span class="op">$</span><span class="fu">filter_paths</span><span class="op">(</span><span class="va">pattern</span>, ignore_case <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="arguments-8">Arguments<a class="anchor" aria-label="anchor" href="#arguments-8"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>pattern</code></dt>
 <dd><p>Regex pattern to match against paths</p></dd>
+
+
+<dt><code>ignore_case</code></dt>
+<dd><p>TRUE to ignore cases, FALSE otherwise.
+Defaults to FALSE.</p></dd>
 
 
 </dl><p></p></div>
