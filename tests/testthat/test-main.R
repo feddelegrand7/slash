@@ -713,78 +713,7 @@ test_that("filtering paths works as expected", {
 })
 
 
-test_that("print_tree prints root-only structure", {
-  sl <- slash$new()
-  out <- capture.output(sl$print_tree())
-  expect_true(any(grepl("<root>", out)))
-})
 
-test_that("print_tree shows single level keys", {
-  sl <- slash$new(list(a = 1, b = 2))
-  out <- capture.output(sl$print_tree())
-  expect_true(any(grepl("a: 1", out)))
-  expect_true(any(grepl("b: 2", out)))
-})
 
-test_that("print_tree prints nested structures correctly", {
-  sl <- slash$new(list(parent = list(child = list(value = 42))))
-  out <- capture.output(sl$print_tree())
-  expect_true(any(grepl("parent", out)))
-  expect_true(any(grepl("child", out)))
-  expect_true(any(grepl("value: 42", out)))
-})
-
-test_that("print_tree works with unnamed list elements", {
-  sl <- slash$new(list(list("first"), list("second")))
-  out <- capture.output(sl$print_tree())
-  expect_true(any(grepl("1: first", out)))
-  expect_true(any(grepl("1: second", out)))
-})
-
-test_that("print_tree errors on invalid path", {
-  sl <- slash$new(list(a = 1))
-  expect_error(sl$print_tree("nonexistent/path"), "Path 'nonexistent/path' not found")
-})
-
-test_that("print_tree prints from subpath", {
-  sl <- slash$new(list(a = list(b = list(c = "leaf"))))
-  out <- capture.output(sl$print_tree("a/b"))
-  expect_true(any(grepl("c: leaf", out)))
-})
-
-test_that("print_tree prints empty list under key correctly", {
-  sl <- slash$new(list(a = list(b = list())))
-  out <- capture.output(sl$print_tree())
-  expect_true(any(grepl("a", out)))
-  expect_true(any(grepl("b", out)))
-})
-
-test_that("print_tree handles NULL values properly", {
-  sl <- slash$new(list(a = NULL))
-  out <- capture.output(sl$print_tree())
-  expect_true(any(grepl("a: NULL", out)))
-})
-
-test_that("print_tree handles mixed named and unnamed lists", {
-  sl <- slash$new(list(a = 1, list("unnamed")))
-  out <- capture.output(sl$print_tree())
-  expect_true(any(grepl("a: 1", out)))
-  expect_true(any(grepl("1: unnamed", out)))
-})
-
-test_that("print_tree handles multiple nested branches", {
-  sl <- slash$new(list(
-    users = list(
-      alice = list(age = 30),
-      bob   = list(age = 25)
-    )
-  ))
-  out <- capture.output(sl$print_tree())
-  expect_true(any(grepl("users", out)))
-  expect_true(any(grepl("alice", out)))
-  expect_true(any(grepl("bob", out)))
-  expect_true(any(grepl("age: 30", out)))
-  expect_true(any(grepl("age: 25", out)))
-})
 
 

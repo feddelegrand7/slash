@@ -163,10 +163,12 @@ slash <- R6::R6Class(
 
     #' @description Filter paths by regex pattern
     #' @param pattern Regex pattern to match against paths
+    #' @param ignore_case TRUE to ignore cases, FALSE otherwise.
+    #' Defaults to FALSE.
     #' @return Character vector of matching paths
-    filter_paths = function(pattern) {
+    filter_paths = function(pattern, ignore_case = FALSE) {
       paths <- self$list_paths()
-      grep(pattern, paths, value = TRUE)
+      grep(pattern, paths, ignore.case = ignore_case, value = TRUE)
     },
 
     #' @description Print a tree-like diagram of the list structure
