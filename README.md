@@ -387,8 +387,6 @@ sl$print_list()
 
 ## Printing a `Tree` representation
 
-**only available in the development version (not yet on CRAN)**
-
 You can print a `Tree` representation of your `slash` object and its
 underlying list using the `print_tree` method:
 
